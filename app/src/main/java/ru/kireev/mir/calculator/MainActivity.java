@@ -34,7 +34,13 @@ public class MainActivity extends AppCompatActivity {
             StringCalculator calculator = new StringCalculator(expression);
             String result;
             try {
-                result = Double.toString(calculator.getResult());
+                double resultDouble = calculator.getResult();
+                if (Double.isInfinite(resultDouble)) {
+                    result = "Деление на ноль! Проверьте выражение.";
+                } else {
+                    result = Double.toString(resultDouble);
+                }
+
             } catch (EmptyStackException | WrongExpressionException e) {
                 result = "Ошибка в выражении! Просьба проверить входные данные.";
             }
